@@ -1,12 +1,13 @@
 import './App.css'
 import { useState } from 'react'
+import { Router, Route } from 'wouter'
+import { useLocationProperty, navigate } from "wouter/use-location";
+import { useHashLocation } from './hooks/hash-location.js'
 import Home from './pages/Home.jsx'
 import Details from './pages/Details.jsx'
 
 function App() {
-  const [theme, setTheme] = useState('light')
-  const [currentPage, setCurrentPage] = useState('Home')
-  const [clickedCountry, setClickedCountry] = useState('')
+  const [theme, setTheme] = useState('dark')
 
   const toggleTheme = () => {
     const body = document.getElementsByTagName('body')[0]
@@ -38,14 +39,12 @@ function App() {
         </nav>
       </div>
       <main>
-        {currentPage == 'Home'
-          ?
-          <Home onClickCountry={(country) => {
-            setClickedCountry(country)
-            setCurrentPage('Details')
-          }}/>
-          : <Details country={clickedCountry} onBack={() => setCurrentPage('Home')}/> 
-          }
+        <Router hook={useHashLocation} base='/frontend-mentor-solutions/where-in-the-world'>
+          <Route path='/' component={Home} />
+          <Route path='/:countryCode'>
+            {params => <Details params={params} />}
+          </Route>
+        </Router>
       </main>
     </>
   )

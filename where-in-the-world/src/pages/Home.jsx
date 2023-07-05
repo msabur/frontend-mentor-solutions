@@ -1,9 +1,12 @@
 import './Home.css'
 import { useState } from 'react'
+import { useHashLocation } from '../hooks/hash-location.js'
 import countriesData from '../../data.json'
 
-export default function Home({ onClickCountry }) {
+export default function Home() {
+  const [, navigate] = useHashLocation()
   const [countries, setCountries] = useState(countriesData)
+
   const onFilter = (event) => {
     const region = event.target.value
     if (region) {
@@ -37,9 +40,7 @@ export default function Home({ onClickCountry }) {
       <div className="countries">
         {countries.map((country) => (
           <div className="country rounded-borders shadowed" key={country.name}
-            onClick={()=>{
-              onClickCountry(country);
-            }}
+            onClick={() => navigate(`/${country.alpha3Code}`)}
           >
             <img src={country.flag} alt={country.name} />
             <div className="country-info">

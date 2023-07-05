@@ -1,0 +1,36 @@
+.details-container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.flag-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.flag-container img {
+    width: 100%;
+    height: auto;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.columns {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
