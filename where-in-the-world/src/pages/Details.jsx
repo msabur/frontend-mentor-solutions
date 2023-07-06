@@ -39,16 +39,16 @@ export default function Details({ params }) {
           </div>
 
           <div className="info-container">
-            <h3>{country?.name}</h3>
-            <div className="columns">
-              <div className="column">
+            <h1>{country?.name}</h1>
+            <div className="info-columns">
+              <div className="info-column">
                 <p><b>Native Name:</b> {country?.nativeName}</p>
                 <p><b>Population:</b> {country?.population?.toLocaleString()}</p>
                 <p><b>Region:</b> {country?.region}</p>
                 <p><b>Sub Region:</b> {country?.subregion}</p>
                 <p><b>Capital:</b> {country?.capital}</p>
               </div>
-              <div className="column">
+              <div className="info-column">
                 <p><b>Top Level Domain:</b> {country?.topLevelDomain}</p>
                 <p><b>Currencies:</b> {currencies?.join(', ')}</p>
                 <p><b>Languages:</b> {languages?.join(', ')}</p>
@@ -57,9 +57,9 @@ export default function Details({ params }) {
             <p>
               <b>Border Countries: </b>
               {borderCountries?.map(c => (
-                <span key={c.alpha3Code}>
-                  <Link href={`/${c.alpha3Code}`}><a>{c.name}</a></Link>
-                </span>
+                <Link href={`/${c.alpha3Code}`} key={c.alpha3Code}>
+                  <a class="border-link shadowed">{c.name}</a>
+                </Link>
               ))}
             </p>
           </div>
