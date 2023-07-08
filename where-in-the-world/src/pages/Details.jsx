@@ -32,7 +32,7 @@ export default function Details({ params }) {
     return (
       <>
         <button className="back-button" onClick={() => navigate('/', { replaceState: true })}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/> </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16"> <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/> </svg>
             Back
         </button>
 
@@ -61,7 +61,7 @@ export default function Details({ params }) {
               <b>Border Countries: </b>
               {borderCountries?.map(c => (
                 <Link href={`/${c.alpha3Code}`} key={c.alpha3Code}>
-                  <a class="border-link">{c.name}</a>
+                  <a className="border-link">{c.name}</a>
                 </Link>
               ))}
             </p>

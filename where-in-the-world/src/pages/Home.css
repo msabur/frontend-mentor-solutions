@@ -58,7 +58,7 @@
   cursor: pointer;
   margin: 35px;
   background-color: var(--elements);
-  transition: all .2s;
+  transition: transform .2s;
 }
 
 .country:hover {

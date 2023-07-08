@@ -1,13 +1,18 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useLayoutEffect } from 'react'
 import { Router, Route } from 'wouter'
-import { useLocationProperty, navigate } from "wouter/use-location";
 import { useHashLocation } from './hooks/hash-location.js'
 import Home from './pages/Home.jsx'
 import Details from './pages/Details.jsx'
 
 function App() {
   const [theme, setTheme] = useState('dark')
+  const [location] = useHashLocation()
+
+  // avoid having to scroll up after navigating to a new screen
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location])
 
   const toggleTheme = () => {
     const body = document.getElementsByTagName('body')[0]
