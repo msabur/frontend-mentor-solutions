@@ -31,7 +31,7 @@ function App() {
     <>
       <div className="nav-container">
         <nav>
-          <p>Where in the world?</p>
+          <h1>Where in the world?</h1>
           <button onClick={() => toggleTheme()}>
             {theme == "light"
               ? (

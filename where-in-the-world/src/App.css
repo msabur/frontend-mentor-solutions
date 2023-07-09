@@ -30,7 +30,7 @@ nav {
   color: var(--text);
 }
 
-nav p {
+nav h1 {
   font-weight: 800;
   font-size: min(4vw, 23px);
   /* automatically shrinks text if it won't fit */

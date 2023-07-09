@@ -26,7 +26,7 @@ export default function Home() {
       <div className="search-container">
         <input type="text" onChange={onSearch} placeholder="Search for a country..." className="shadowed rounded-borders" />
 
-        <select onChange={onFilter} defaultValue="" className="shadowed rounded-borders">
+        <select aria-label="Filter by Region" onChange={onFilter} defaultValue="" className="shadowed rounded-borders">
           <option value="" hidden>Filter by Region</option>
           <option value="">All</option>
           <option value="Africa">Africa</option>
