@@ -20,7 +20,7 @@
     html, body {
       height: 100%;
     }
-    body {
+    body,main {
       display: flex;
       flex-direction: column;
       align-content: center;
@@ -112,25 +112,26 @@
   </style>
 </head>
 <body>
+<main>
   <div class="top-image"></div>
 
   <div class="main-container">
     <div class="header-container">
-      <img src="./assets/images/icon-star.svg">
+      <img alt="star icon" src="./assets/images/icon-star.svg">
       <h1>FAQs</h1>
     </div>
 
     <div class="question-container">
       <h2>What is Frontend Mentor, and how will it help me?</h2>
-      <img src="./assets/images/icon-plus.svg">
+      <img alt="plus icon" src="./assets/images/icon-plus.svg">
     </div>
-    <div class="answer-container">
+    <div class="answer-container" style="display:inline;">
       <p>Frontend Mentor offers realistic coding challenges to help developers improve their frontend coding skills with projects in HTML, CSS, and JavaScript. It's suitable for all levels and ideal for portfolio building.</p>
     </div>
 
     <div class="question-container">
       <h2>Is Frontend Mentor free?</h2>
-      <img src="./assets/images/icon-plus.svg">
+      <img alt="plus icon" src="./assets/images/icon-plus.svg">
     </div>
     <div class="answer-container">
       <p>Yes, Frontend Mentor offers both free and premium coding challenges, with the free option providing access to a range of projects suitable for all skill levels.</p>
@@ -138,7 +139,7 @@
 
     <div class="question-container">
       <h2>Can I use Frontend Mentor projects in my portfolio?</h2>
-      <img src="./assets/images/icon-plus.svg">
+      <img alt="plus icon" src="./assets/images/icon-plus.svg">
     </div>
     <div class="answer-container">
       <p>Yes, you can use projects completed on Frontend Mentor in your portfolio. It's an excellent way to showcase your skills to potential employers!</p>
@@ -146,7 +147,7 @@
 
     <div class="question-container">
       <h2>How can I get help if I'm stuck on a challenge?</h2>
-      <img src="./assets/images/icon-plus.svg">
+      <img alt="plus icon" src="./assets/images/icon-plus.svg">
     </div>
     <div class="answer-container">
       <p>The best place to get help is inside Frontend Mentor's Discord community. There's a help channel where you can ask questions and seek support from other community members.</p>
@@ -156,8 +157,7 @@
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
   </div>
-</body>
-
+</main>
 <script type="text/javascript">
   const questions = document.querySelectorAll(".question-container")
   questions.forEach(q => {
@@ -172,5 +172,5 @@
     }
   })
 </script>
-
+</body>
 </html>
