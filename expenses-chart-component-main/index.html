@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Expenses chart component</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap');
+
+    :root {
+      --soft-red: hsl(10, 79%, 65%);
+      --cyan: hsl(186, 34%, 60%);
+      --dark-brown: hsl(25, 47%, 15%);
+      --medium-brown: hsl(28, 10%, 53%);
+      --cream: hsl(27, 66%, 92%);
+      --very-pale-orange: hsl(33, 100%, 98%);
+
+      --graph-height: 250px;
+    }
+
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    body {
+      font-size: 18px;
+      font-weight: 400;
+      font-family: "DM Sans", sans-serif;
+      background: var(--cream);
+    }
+
+    .base-container {
+      border-radius: 15px;
+      padding: 30px 30px;
+      margin: 15px 10px;
+      box-sizing: border-box;
+      width: min(90vw, 540px);
+    }
+
+    .balance-container {
+      display: flex;
+      justify-content: space-between;
+      background: var(--soft-red);
+      color: white;
+    }
+
+    .balance-container>div>p {
+      margin: 5px 0px;
+    }
+
+    .balance-container>div>b {
+      font-size: 30px;
+    }
+
+    @keyframes spin {
+      from {transform: rotate(0deg);}
+      to {transform: rotate(360deg);}
+    }
+
+    .balance-container img:hover {
+      animation-name: spin;
+      animation-duration: 1s;
+      animation-iteration-count: 1;
+    }
+
+    .spending-container {
+      background: var(--very-pale-orange);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .spending-title {
+      font-size: 25px;
+      color: var(--dark-brown);
+    }
+
+    .spending-container hr {
+      width: 100%;
+      border-color: var(--cream);
+      margin: 15px 0;
+    }
+
+    .spending-graph {
+      display: flex;
+      flex-direction: row;
+      height: var(--graph-height);
+    }
+
+    .bar-container {
+      display: flex;
+      flex-direction: column;
+      margin-right: 2%;
+      margin-left: 2%;
+      width: 2.5em;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .bar {
+      background: var(--soft-red);
+      height: 100px;
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .bar:hover {
+      filter: brightness(125%);
+      cursor: pointer;
+    }
+
+    .bar:hover::before {
+      position: absolute;
+      width: 150%;
+      top: -38px;
+      left: calc(-40%);
+      content: attr(data-value);
+      background: black;
+      color: white;
+      border-radius: 5px;
+      padding: 5px;
+      font-size: 15px;
+      text-align: center;
+    }
+    
+    .bar-container p {
+      color: var(--medium-brown);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .spending-summary {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .spending-summary>div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .spending-summary p {
+      color: var(--medium-brown);
+      font-size: 15px;
+    }
+
+    .total p {
+      margin: 5px 0;
+    }
+
+    .total b {
+      font-size: 32px;
+    }
+
+    .change {
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    .change p {
+      margin: 2px 0;
+    }
+
+    .bold { font-weight: 700; }
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="balance-container base-container">
+      <div>
+        <p>My balance</p>
+        <b>$921.48</b>
+      </div>
+      <img src="./images/logo.svg">
+    </div>
+
+    <div class="spending-container base-container">
+      <b class="spending-title">Spending - Last 7 days</b>
+
+      <div class="spending-graph">
+      </div>
+      <hr>
+      <div class="spending-summary">
+        <div class="total">
+          <p>Total this month</p>
+          <b>$478.33</b>
+        </div>
+
+        <div class="change">
+          <b>+2.4%</b>
+          <p>from last month</p>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">someone</a>.
+    </div>
+  </main>
+
+<script type="text/javascript">
+  const data = [{"day":"mon","amount":17.45},{"day":"tue","amount":34.91},{"day":"wed","amount":52.36},{"day":"thu","amount":31.07},{"day":"fri","amount":23.39},{"day":"sat","amount":43.28},{"day":"sun","amount":25.48}]
+  const amounts = data.map(item => parseFloat(item["amount"]))
+  const maxAmount = Math.max(...amounts)
+  const graphHeight = parseInt(getComputedStyle(document.body).getPropertyValue('--graph-height'))
+  const adjustmentFactor = 0.65
+
+  const computeBarHeight = (amount) => (amount / maxAmount * graphHeight * adjustmentFactor)
+
+  const graph = document.querySelector('.spending-graph')
+  for (let i = 0; i < 7; i++ ) {
+    const day = data[i]['day'], amount = data[i]['amount'];
+
+    let container = document.createElement('div')
+    container.classList.add('bar-container')
+
+    let bar = document.createElement('div'), label = document.createElement('p')
+    bar.classList.add('bar')
+    bar.dataset.value = `$${amount}`
+    bar.style.height = `${computeBarHeight(amount)}px`
+    if (day === 'wed') bar.style.background = "var(--cyan)"
+    label.innerText = day
+
+    container.appendChild(bar)
+    container.appendChild(label)
+    graph.appendChild(container)
+  }
+</script>
+</body>
+
+</html>
